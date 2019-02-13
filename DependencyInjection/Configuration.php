@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * @author    Alexey Gorshkov <moonhorn33@gmail.com>
  * @copyright Copyright (c) 2019, Darvin Studio
