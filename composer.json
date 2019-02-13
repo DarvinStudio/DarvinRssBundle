@@ -1,0 +1,18 @@
+{
+    "name":        "darvinstudio/darvin-rss-bundle",
+    "description": "This bundle provides RSS generation functionality for Symfony-based applications.",
+    "keywords":    ["rss"],
+    "type":        "symfony-bundle",
+    "license":     "MIT",
+    "authors": [
+        {
+            "name":     "Darvin Studio",
+            "email":    "info@darvin-studio.ru",
+            "homepage": "https://www.darvin-studio.ru"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": { "Darvin\\SitemapBundle\\": "" }
+    }
+}
