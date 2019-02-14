@@ -26,7 +26,7 @@ class RssController extends AbstractController
     public function indexAction(): Response
     {
         return new StreamedResponse([$this->getRssStreamer(), 'streamRss'], 200, [
-            'Content-Type'      => sprintf('application/rss+xml; charset=%s', $this->getParameter('kernel.charset')),
+            'Content-Type'      => sprintf('application/rss+xml; charset=%s', $this->container->getParameter('kernel.charset')),
             'X-Accel-Buffering' => 'no',
         ]);
     }
