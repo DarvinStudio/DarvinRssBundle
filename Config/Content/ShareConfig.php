@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 /**
- * @author    Alexey Gorshkov <moonhorn33@gmail.com>
+ * @author    Igor Nikolaev <igor.sv.n@gmail.com>
  * @copyright Copyright (c) 2019, Darvin Studio
  * @link      https://www.darvin-studio.ru
  *
