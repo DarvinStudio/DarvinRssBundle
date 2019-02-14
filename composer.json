@@ -12,7 +12,8 @@
         }
     ],
     "require": {
-        "darvinstudio/darvin-content-bundle": "*"
+        "darvinstudio/darvin-content-bundle": "*",
+        "darvinstudio/darvin-image-bundle": "*"
     },
     "autoload": {
         "psr-4": { "Darvin\\RssBundle\\": "" }
