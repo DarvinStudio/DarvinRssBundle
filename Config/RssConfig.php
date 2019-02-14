@@ -20,7 +20,12 @@ use Darvin\RssBundle\Config\Content\ShareConfig;
 class RssConfig
 {
     /**
-     * @var \Darvin\RssBundle\Config\EntityConfig[]
+     * @var array
+     */
+    private $config;
+
+    /**
+     * @var \Darvin\RssBundle\Config\EntityConfig[]|null
      */
     private $entities;
 
@@ -29,23 +34,9 @@ class RssConfig
      */
     public function __construct(array $config)
     {
-        $this->entities = [];
+        $this->config = $config;
 
-        foreach ($config['entities'] as $entity => $config) {
-            if (!$config['enabled']) {
-                continue;
-            }
-
-            $this->entities[] = new EntityConfig(
-                $entity,
-                $config['repository_method'],
-                $config['mapping'],
-                new ContentConfig(
-                    $this->createContentFeedConfig($config['content']['feed']),
-                    $this->createContentShareConfig($config['content']['share'])
-                )
-            );
-        }
+        $this->entities = null;
     }
 
     /**
@@ -53,6 +44,28 @@ class RssConfig
      */
     public function getEntities(): array
     {
+        if (null === $this->entities) {
+            $entities = [];
+
+            foreach ($this->config['entities'] as $entity => $config) {
+                if (!$config['enabled']) {
+                    continue;
+                }
+
+                $entities[] = new EntityConfig(
+                    $entity,
+                    $config['repository_method'],
+                    $config['mapping'],
+                    new ContentConfig(
+                        $this->createContentFeedConfig($config['content']['feed']),
+                        $this->createContentShareConfig($config['content']['share'])
+                    )
+                );
+            }
+
+            $this->entities = $entities;
+        }
+
         return $this->entities;
     }
 
