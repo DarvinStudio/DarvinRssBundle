@@ -25,7 +25,11 @@ class RssController extends AbstractController
      */
     public function indexAction(): Response
     {
-        return new StreamedResponse([$this->getRssStreamer(), 'streamRss'], 200, $this->container->getParameter('darvin_rss.response.headers'));
+        return new StreamedResponse(
+            [$this->getRssStreamer(), 'streamRss'],
+            200,
+            $this->container->getParameter('kernel.debug') ? [] : $this->container->getParameter('darvin_rss.response.headers')
+        );
     }
 
     /**
