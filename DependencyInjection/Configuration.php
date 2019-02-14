@@ -30,6 +30,14 @@ class Configuration implements ConfigurationInterface
 
         $root
             ->children()
+                ->arrayNode('response')->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('headers')->prototype('scalar')->end()->defaultValue([
+                            'Content-Type'      => 'application/rss+xml; charset=utf-8',
+                            'X-Accel-Buffering' => 'no',
+                        ])->end()
+                    ->end()
+                ->end()
                 ->arrayNode('entities')->useAttributeAsKey('entity')
                     ->validate()
                         ->ifTrue(function (array $entities) {
