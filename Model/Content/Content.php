@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Content
 {
-    public const HEADING_MAX_LENGTH = 240;
+    private const HEADING_MAX_LENGTH = 240;
 
     /**
      * @var \Darvin\RssBundle\Model\Content\Feed\Feed|null

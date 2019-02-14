@@ -29,7 +29,7 @@ use Symfony\Component\Templating\EngineInterface;
  */
 class RssStreamer implements RssStreamerInterface
 {
-    public const ITEMS_MAX = 1000;
+    private const ITEMS_MAX = 1000;
 
     /**
      * @var \Darvin\RssBundle\Config\RssConfig
