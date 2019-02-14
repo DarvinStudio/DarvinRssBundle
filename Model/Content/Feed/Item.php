@@ -89,7 +89,7 @@ class Item
         ];
 
         foreach ($attributes as $key => $value) {
-            $value = trim($value);
+            $value = null !== $value ? trim($value) : '';
 
             if ('' === $value) {
                 unset($attributes[$key]);
@@ -178,7 +178,7 @@ class Item
      */
     public function setDescription(?string $description): Item
     {
-        $this->description = strip_tags($description);
+        $this->description = null !== $description ? strip_tags($description) : null;
 
         return $this;
     }

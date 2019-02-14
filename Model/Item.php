@@ -91,7 +91,7 @@ class Item
         ];
 
         foreach ($elements as $key => $value) {
-            $value = trim($value);
+            $value = null !== $value ? trim($value) : '';
 
             if ('' === $value) {
                 unset($elements[$key]);

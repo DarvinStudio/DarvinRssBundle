@@ -50,7 +50,7 @@ class Rss
         ];
 
         foreach ($elements as $key => $value) {
-            $value = trim($value);
+            $value = null !== $value ? trim($value) : '';
 
             if ('' === $value) {
                 unset($elements[$key]);
@@ -79,7 +79,7 @@ class Rss
      */
     public function setTitle(?string $title): Rss
     {
-        if (mb_strlen($title) > self::TITLE_MAX_LENGTH) {
+        if (null !== $title && mb_strlen($title) > self::TITLE_MAX_LENGTH) {
             $title = mb_substr($title, 0, self::TITLE_MAX_LENGTH - 3).'...';
         }
 

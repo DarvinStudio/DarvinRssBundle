@@ -54,7 +54,7 @@ class Feed
         ];
 
         foreach ($attributes as $key => $value) {
-            $value = trim($value);
+            $value = null !== $value ? trim($value) : '';
 
             if ('' === $value) {
                 unset($attributes[$key]);

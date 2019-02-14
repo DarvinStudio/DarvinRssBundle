@@ -127,7 +127,7 @@ class Content
      */
     public function setHeading(?string $heading)
     {
-        if (mb_strlen($heading) > self::HEADING_MAX_LENGTH) {
+        if (null !== $heading && mb_strlen($heading) > self::HEADING_MAX_LENGTH) {
             $heading = mb_substr($heading, 0, self::HEADING_MAX_LENGTH - 3).'...';
         }
 
