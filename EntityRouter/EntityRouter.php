@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * @author    Igor Nikolaev <igor.sv.n@gmail.com>
  * @copyright Copyright (c) 2018-2019, Darvin Studio
@@ -51,7 +51,7 @@ class EntityRouter implements EntityRouterInterface
     /**
      * {@inheritdoc}
      */
-    public function generateUrl($entity)
+    public function generateUrl($entity): ?string
     {
         $class = get_class($entity);
 
