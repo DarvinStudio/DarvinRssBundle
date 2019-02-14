@@ -9,4 +9,4 @@ services:
         class: '%darvin_rss.configuration.class%'
         public: false
         arguments:
-            - '%darvin_rss%'
+            - '%darvin_rss.entities%'

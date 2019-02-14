@@ -1,7 +1,7 @@
 parameters:
     darvin_rss.streamer.class: Darvin\RssBundle\Streamer\RssStreamer
 
-service:
+services:
     _defaults:
         public: true
 
@@ -10,9 +10,10 @@ service:
         arguments:
             - '@darvin_rss.configuration'
             - '@doctrine.orm.entity_manager'
+            - '@darvin_rss.rss_item_factory'
             - '@darvin_utils.locale.provider'
             - '@logger'
             - '@request_stack'
-            - '@darvin_rss.factory'
+            - '@darvin_rss.rss_factory'
             - '@templating'
             - '%kernel.debug%'
