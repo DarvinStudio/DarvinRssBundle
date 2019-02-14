@@ -1,0 +1,41 @@
+{% set content = item.content %}
+
+<item turbo="true">
+    {% for name, value in item.simpleElements %}
+        <{{ name }}>{{ value }}</{{ name }}>
+    {% endfor %}
+    <turbo:content>
+        <![CDATA[
+            <header>
+                {% if content.image and image_exists(content.image) %}
+                    <figure>
+                        <img src="{{ content.image|image_original(true) }}" />
+                    </figure>
+                {% endif %}
+                {% if content.heading %}
+                    <h1>{{ content.heading }}</h1>
+                {% endif %}
+            </header>
+            {{ content.text|raw }}
+            {% if content.share %}
+                <div{% for name, value in content.share.simpleAttributes %} {{ name }}="{{ value }}"{% endfor %}></div>
+            {% endif %}
+            {% if content.feed and content.feed.items is not empty %}
+                <div{% for name, value in content.feed.simpleAttributes %} {{ name }}="{{ value }}"{% endfor %}>
+                    {% for item in content.feed.items %}
+
+                        {% set attr = item.simpleAttributes %}
+
+                        {% if item.image and image_exists(item.image) %}
+
+                            {% set attr = attr|merge({'data-thumb': item.image|image_original}) %}
+
+                        {% endif %}
+
+                        <div{% for name, value in attr %} {{ name }}="{{ value }}"{% endfor %}></div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        ]]>
+    </turbo:content>
+</item>

@@ -120,7 +120,7 @@ class RssStreamer implements RssStreamerInterface
 
         $rss = $this->rssFactory->createRss();
 
-        $this->render(':rss:header.xml.twig', [
+        $this->render('@DarvinRss/header.xml.twig', [
             'rss' => $rss,
         ]);
 
@@ -165,7 +165,7 @@ class RssStreamer implements RssStreamerInterface
                 try {
                     $item = $this->itemFactory->createItem($entity, $config->getContent(), $config->getMapping());
 
-                    $this->render(':rss:item.xml.twig', [
+                    $this->render('@DarvinRss/item.xml.twig', [
                         'rss'  => $rss,
                         'item' => $item,
                     ]);
@@ -187,7 +187,7 @@ class RssStreamer implements RssStreamerInterface
             $this->em->clear();
         }
 
-        $this->render(':rss:footer.xml.twig', [
+        $this->render('@DarvinRss/footer.xml.twig', [
             'rss' => $rss,
         ]);
     }
