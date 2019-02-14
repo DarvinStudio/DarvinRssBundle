@@ -1,0 +1,3 @@
+darvin_rss_import_rss:
+    resource: '@DarvinRssBundle/Resources/config/routing/rss.yaml'
+    prefix:   /
