@@ -15,7 +15,7 @@ namespace Darvin\RssBundle\Model;
  */
 class Rss
 {
-    public const TITLE_MAX_LENGTH = 240;
+    private const TITLE_MAX_LENGTH = 240;
 
     /**
      * @var string|null
