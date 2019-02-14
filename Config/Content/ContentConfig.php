@@ -18,38 +18,38 @@ class ContentConfig
     /**
      * @var \Darvin\RssBundle\Config\Content\FeedConfig|null
      */
-    private $feedConfig;
+    private $feed;
 
     /**
      * @var \Darvin\RssBundle\Config\Content\ShareConfig|null
      */
-    private $shareConfig;
+    private $share;
 
     /**
      * ShareConfig constructor.
      *
-     * @param \Darvin\RssBundle\Config\Content\FeedConfig|null  $feedConfig  Feed configuration
-     * @param \Darvin\RssBundle\Config\Content\ShareConfig|null $shareConfig Share configuration
+     * @param \Darvin\RssBundle\Config\Content\FeedConfig|null  $feed  Feed configuration
+     * @param \Darvin\RssBundle\Config\Content\ShareConfig|null $share Share configuration
      */
-    public function __construct(?FeedConfig $feedConfig = null, ?ShareConfig $shareConfig = null)
+    public function __construct(?FeedConfig $feed = null, ?ShareConfig $share = null)
     {
-        $this->feedConfig  = $feedConfig;
-        $this->shareConfig = $shareConfig;
+        $this->feed  = $feed;
+        $this->share = $share;
     }
 
     /**
      * @return \Darvin\RssBundle\Config\Content\FeedConfig|null
      */
-    public function getFeedConfig(): ?FeedConfig
+    public function getFeed(): ?FeedConfig
     {
-        return $this->feedConfig;
+        return $this->feed;
     }
 
     /**
      * @return \Darvin\RssBundle\Config\Content\ShareConfig|null
      */
-    public function getShareConfig(): ?ShareConfig
+    public function getShare(): ?ShareConfig
     {
-        return $this->shareConfig;
+        return $this->share;
     }
 }
