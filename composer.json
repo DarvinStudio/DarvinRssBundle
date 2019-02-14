@@ -1,13 +1,15 @@
 {
-    "name":        "darvinstudio/darvin-rss-bundle",
+    "name": "darvinstudio/darvin-rss-bundle",
+    "type": "symfony-bundle",
     "description": "This bundle provides RSS functionality for Symfony-based applications.",
-    "keywords":    ["rss"],
-    "type":        "symfony-bundle",
-    "license":     "MIT",
+    "keywords": [
+        "rss"
+    ],
+    "license": "MIT",
     "authors": [
         {
-            "name":     "Darvin Studio",
-            "email":    "info@darvin-studio.ru",
+            "name": "Darvin Studio",
+            "email": "info@darvin-studio.ru",
             "homepage": "https://www.darvin-studio.ru"
         }
     ],
@@ -16,6 +18,8 @@
         "darvinstudio/darvin-image-bundle": "*"
     },
     "autoload": {
-        "psr-4": { "Darvin\\RssBundle\\": "" }
+        "psr-4": {
+            "Darvin\\RssBundle\\": ""
+        }
     }
 }
