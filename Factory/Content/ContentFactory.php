@@ -88,6 +88,10 @@ class ContentFactory implements ContentFactoryInterface
     {
         $text = $content->getText();
 
+        if (null === $text) {
+            return;
+        }
+
         $replacements = array_fill_keys(array_map(function (WidgetInterface $widget) {
             return '%'.$widget->getName().'%';
         }, $this->widgetPool->getAllWidgets()), '');
