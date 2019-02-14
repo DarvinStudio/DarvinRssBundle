@@ -11,6 +11,7 @@
 namespace Darvin\RssBundle\DependencyInjection;
 
 use Darvin\Utils\DependencyInjection\ConfigInjector;
+use Darvin\Utils\DependencyInjection\ConfigLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 
@@ -25,5 +26,13 @@ class DarvinRssExtension extends Extension
     public function load(array $configs, ContainerBuilder $container): void
     {
         (new ConfigInjector($container))->inject($this->processConfiguration(new Configuration(), $configs), $this->getAlias());
+
+        (new ConfigLoader($container, __DIR__.'/../Resources/config'))->load([
+            'configuration',
+            'entity_router',
+            'factory',
+            'mapper',
+            'streamer',
+        ]);
     }
 }
