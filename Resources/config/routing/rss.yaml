@@ -1,4 +1,0 @@
-darvin_rss:
-    path:     /rss.xml
-    defaults: { _controller: Darvin\RssBundle\Controller\RssController::indexAction }
-    methods:  [ get ]
