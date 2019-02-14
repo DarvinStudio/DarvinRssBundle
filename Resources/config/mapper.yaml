@@ -1,0 +1,12 @@
+parameters:
+    darvin_rss.mapper.class: Darvin\RssBundle\Mapper\Mapper
+
+services:
+    _defaults:
+        public: true
+
+    darvin_rss.mapper:
+        class: '%darvin_rss.mapper.class%'
+        public: false
+        arguments:
+            - '@property_accessor'

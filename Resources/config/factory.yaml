@@ -1,0 +1,66 @@
+parameters:
+    darvin_rss.content_factory.class: Darvin\RssBundle\Factory\Content\ContentFactory
+
+    darvin_rss.content_feed_factory.class: Darvin\RssBundle\Factory\Content\Feed\FeedFactory
+
+    darvin_rss.content_feed_item_factory.class: Darvin\RssBundle\Factory\Content\Feed\ItemFactory
+
+    darvin_rss.content_share_factory.class: Darvin\RssBundle\Factory\Content\ShareFactory
+
+    darvin_rss.rss_factory.class: Darvin\RssBundle\Factory\RssFactory
+
+    darvin_rss.rss_item_factory.class: Darvin\RssBundle\Factory\ItemFactory
+
+services:
+    _defaults:
+        public: true
+
+    darvin_rss.content_factory:
+        class: '%darvin_rss.content_factory.class%'
+        public: false
+        arguments:
+            - '@darvin_rss.content_feed_factory'
+            - '@darvin_rss.mapper'
+            - '@darvin_rss.content_share_factory'
+            - '@darvin_content.widget.pool'
+
+    darvin_rss.content_feed_factory:
+        class: '%darvin_rss.content_feed_factory.class%'
+        public: false
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@darvin_rss.content_feed_item_factory'
+            - '@darvin_utils.locale.provider'
+            - '@logger'
+            - '@translator'
+            - '%kernel.debug%'
+
+    darvin_rss.content_feed_item_factory:
+        class: '%darvin_rss.content_feed_item_factory.class%'
+        public: false
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@darvin_rss.entity_router'
+            - '@darvin_rss.mapper'
+            - '@validator'
+
+    darvin_rss.content_share_factory:
+        class: '%darvin_rss.content_share_factory.class%'
+        public: false
+
+    darvin_rss.rss_item_factory:
+        class: '%darvin_rss.rss_item_factory.class%'
+        public: false
+        arguments:
+            - '@darvin_rss.content_factory'
+            - '@doctrine.orm.entity_manager'
+            - '@darvin_rss.entity_router'
+            - '@darvin_rss.mapper'
+            - '@validator'
+
+    darvin_rss.rss_factory:
+        class: '%darvin_rss.rss_factory.class%'
+        public: false
+        arguments:
+            - '@request_stack'
+            - '%env(resolve:PROJECT_TITLE)%'
