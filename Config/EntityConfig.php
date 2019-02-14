@@ -39,11 +39,11 @@ class EntityConfig
 
     /**
      * @param string                                         $entity           Entity class or interface
-     * @param string                                         $repositoryMethod Repository method
+     * @param string|null                                    $repositoryMethod Repository method
      * @param array                                          $mapping          Mapping
      * @param \Darvin\RssBundle\Config\Content\ContentConfig $content          Content configuration
      */
-    public function __construct(string $entity, string $repositoryMethod, array $mapping, ContentConfig $content)
+    public function __construct(string $entity, ?string $repositoryMethod, array $mapping, ContentConfig $content)
     {
         $this->entity = $entity;
         $this->repositoryMethod = $repositoryMethod;
@@ -62,7 +62,7 @@ class EntityConfig
     /**
      * @return string
      */
-    public function getRepositoryMethod(): string
+    public function getRepositoryMethod(): ?string
     {
         return $this->repositoryMethod;
     }
