@@ -23,12 +23,12 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('darvin_rss');
+        $builder = new TreeBuilder('darvin_rss');
 
-        /** @var \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $rootNode */
-        $rootNode = $treeBuilder->getRootNode();
+        /** @var \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $root */
+        $root = $builder->getRootNode();
 
-        $rootNode
+        $root
             ->children()
                 ->arrayNode('entities')->useAttributeAsKey('entity')
                     ->validate()
@@ -78,6 +78,6 @@ class Configuration implements ConfigurationInterface
                                                     return array_unique($network);
                                                 });
 
-        return $treeBuilder;
+        return $builder;
     }
 }

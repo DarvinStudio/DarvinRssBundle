@@ -47,7 +47,7 @@ class RssConfig
         if (null === $this->entities) {
             $entities = [];
 
-            foreach ($this->config['entities'] as $entity => $config) {
+            foreach ($this->config as $entity => $config) {
                 if (!$config['enabled']) {
                     continue;
                 }
