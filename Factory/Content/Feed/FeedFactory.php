@@ -14,6 +14,7 @@ use Darvin\RssBundle\Config\Content\FeedConfig;
 use Darvin\RssBundle\Factory\Content\Feed\Exception\CantCreateItemException;
 use Darvin\RssBundle\Model\Content\Feed\Feed;
 use Darvin\Utils\Locale\LocaleProviderInterface;
+use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\EntityManager;
 use Psr\Log\LoggerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -84,7 +85,7 @@ class FeedFactory implements FeedFactoryInterface
     {
         $feed = new Feed($config->getLayout(), $this->translator->trans($config->getTitle()));
 
-        $class = get_class($entity);
+        $class = ClassUtils::getClass($entity);
 
         $repository = $this->em->getRepository($class);
 

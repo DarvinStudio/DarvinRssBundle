@@ -10,13 +10,15 @@
 
 namespace Darvin\RssBundle\Factory;
 
+use Darvin\ContentBundle\Router\EntityRouterInterface;
 use Darvin\RssBundle\Config\Content\ContentConfig;
-use Darvin\RssBundle\EntityRouter\EntityRouterInterface;
 use Darvin\RssBundle\Factory\Content\ContentFactoryInterface;
 use Darvin\RssBundle\Factory\Exception\CantCreateItemException;
 use Darvin\RssBundle\Mapper\MapperInterface;
 use Darvin\RssBundle\Model\Item;
+use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
@@ -35,7 +37,7 @@ class ItemFactory implements ItemFactoryInterface
     private $em;
 
     /**
-     * @var \Darvin\RssBundle\EntityRouter\EntityRouterInterface
+     * @var \Darvin\ContentBundle\Router\EntityRouterInterface
      */
     private $entityRouter;
 
@@ -52,7 +54,7 @@ class ItemFactory implements ItemFactoryInterface
     /**
      * @param \Darvin\RssBundle\Factory\Content\ContentFactoryInterface $contentFactory RSS content factory
      * @param \Doctrine\ORM\EntityManager                               $em             Entity manager
-     * @param \Darvin\RssBundle\EntityRouter\EntityRouterInterface      $entityRouter   Entity router
+     * @param \Darvin\ContentBundle\Router\EntityRouterInterface        $entityRouter   Entity router
      * @param \Darvin\RssBundle\Mapper\MapperInterface                  $mapper         Mapper
      * @param \Symfony\Component\Validator\Validator\ValidatorInterface $validator      Validator
      */
@@ -75,7 +77,7 @@ class ItemFactory implements ItemFactoryInterface
      */
     public function createItem($entity, ContentConfig $config, array $mapping): Item
     {
-        $item = new Item($this->contentFactory->createContent($entity, $config, $mapping), $this->entityRouter->generateUrl($entity));
+        $item = new Item($this->contentFactory->createContent($entity, $config, $mapping), $this->entityRouter->generateUrl($entity, UrlGeneratorInterface::ABSOLUTE_URL));
 
         $this->mapper->map($entity, $item, $mapping);
 
@@ -89,7 +91,7 @@ class ItemFactory implements ItemFactoryInterface
                 $parts[] = implode(' - ', [$violation->getPropertyPath(), rtrim($violation->getMessage(), '.')]);
             }
 
-            $class = get_class($entity);
+            $class = ClassUtils::getClass($entity);
 
             $id = array_values($this->em->getClassMetadata($class)->getIdentifierValues($entity))[0];
 

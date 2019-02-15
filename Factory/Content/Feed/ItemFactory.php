@@ -10,13 +10,15 @@
 
 namespace Darvin\RssBundle\Factory\Content\Feed;
 
+use Darvin\ContentBundle\Router\EntityRouterInterface;
 use Darvin\RssBundle\Config\Content\FeedConfig;
-use Darvin\RssBundle\EntityRouter\EntityRouterInterface;
 use Darvin\RssBundle\Factory\Content\Feed\Exception\CantCreateItemException;
 use Darvin\RssBundle\Mapper\MapperInterface;
 use Darvin\RssBundle\Model\Content\Feed\Feed;
 use Darvin\RssBundle\Model\Content\Feed\Item;
+use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
@@ -30,7 +32,7 @@ class ItemFactory implements ItemFactoryInterface
     private $em;
 
     /**
-     * @var \Darvin\RssBundle\EntityRouter\EntityRouterInterface
+     * @var \Darvin\ContentBundle\Router\EntityRouterInterface
      */
     private $entityRouter;
 
@@ -46,7 +48,7 @@ class ItemFactory implements ItemFactoryInterface
 
     /**
      * @param \Doctrine\ORM\EntityManager                               $em           Entity manager
-     * @param \Darvin\RssBundle\EntityRouter\EntityRouterInterface      $entityRouter Entity router
+     * @param \Darvin\ContentBundle\Router\EntityRouterInterface        $entityRouter Entity router
      * @param \Darvin\RssBundle\Mapper\MapperInterface                  $mapper       Mapper
      * @param \Symfony\Component\Validator\Validator\ValidatorInterface $validator    Validator
      */
@@ -67,7 +69,7 @@ class ItemFactory implements ItemFactoryInterface
      */
     public function createItem($entity, FeedConfig $config, array $mapping, Feed $feed): Item
     {
-        $item = new Item($feed, $this->entityRouter->generateUrl($entity), $config->getThumbPosition(), $config->getThumbRatio());
+        $item = new Item($feed, $this->entityRouter->generateUrl($entity, UrlGeneratorInterface::ABSOLUTE_URL), $config->getThumbPosition(), $config->getThumbRatio());
 
         $this->mapper->map($entity, $item, $mapping);
 
@@ -81,7 +83,7 @@ class ItemFactory implements ItemFactoryInterface
                 $parts[] = implode(' - ', [$violation->getPropertyPath(), rtrim($violation->getMessage(), '.')]);
             }
 
-            $class = get_class($entity);
+            $class = ClassUtils::getClass($entity);
 
             $id = array_values($this->em->getClassMetadata($class)->getIdentifierValues($entity))[0];
 
