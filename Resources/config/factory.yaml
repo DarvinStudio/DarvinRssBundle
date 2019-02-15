@@ -40,7 +40,7 @@ services:
         public: false
         arguments:
             - '@doctrine.orm.entity_manager'
-            - '@darvin_rss.entity_router'
+            - '@darvin_content.router.entity'
             - '@darvin_rss.mapper'
             - '@validator'
 
@@ -54,7 +54,7 @@ services:
         arguments:
             - '@darvin_rss.content_factory'
             - '@doctrine.orm.entity_manager'
-            - '@darvin_rss.entity_router'
+            - '@darvin_content.router.entity'
             - '@darvin_rss.mapper'
             - '@validator'
 
