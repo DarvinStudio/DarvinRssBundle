@@ -22,7 +22,7 @@ use Doctrine\ORM\QueryBuilder;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Templating\EngineInterface;
+use Twig\Environment;
 
 /**
  * RSS streamer
@@ -67,9 +67,9 @@ class RssStreamer implements RssStreamerInterface
     private $rssFactory;
 
     /**
-     * @var \Symfony\Component\Templating\EngineInterface
+     * @var \Twig\Environment
      */
-    private $templating;
+    private $twig;
 
     /**
      * @var bool
@@ -84,7 +84,7 @@ class RssStreamer implements RssStreamerInterface
      * @param \Psr\Log\LoggerInterface                       $logger         Logger
      * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack   Request stack
      * @param \Darvin\RssBundle\Factory\RssFactoryInterface  $rssFactory     RSS factory
-     * @param \Symfony\Component\Templating\EngineInterface  $templating     Templating
+     * @param \Twig\Environment                              $twig           Twig
      * @param bool                                           $debug          Is debug enabled
      */
     public function __construct(
@@ -95,7 +95,7 @@ class RssStreamer implements RssStreamerInterface
         LoggerInterface $logger,
         RequestStack $requestStack,
         RssFactoryInterface $rssFactory,
-        EngineInterface $templating,
+        Environment $twig,
         bool $debug
     ) {
         $this->config = $config;
@@ -105,7 +105,7 @@ class RssStreamer implements RssStreamerInterface
         $this->logger = $logger;
         $this->requestStack = $requestStack;
         $this->rssFactory = $rssFactory;
-        $this->templating = $templating;
+        $this->twig = $twig;
         $this->debug = $debug;
     }
 
@@ -198,7 +198,7 @@ class RssStreamer implements RssStreamerInterface
      */
     private function render(string $template, array $params): void
     {
-        $content = $this->templating->render($template, $params);
+        $content = $this->twig->render($template, $params);
 
         if (!$this->debug) {
             $content = preg_replace('/\s+/', ' ', $content);

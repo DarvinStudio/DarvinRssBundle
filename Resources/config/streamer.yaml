@@ -15,5 +15,5 @@ services:
             - '@logger'
             - '@request_stack'
             - '@darvin_rss.rss_factory'
-            - '@templating'
+            - '@twig'
             - '%kernel.debug%'
