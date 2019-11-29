@@ -29,6 +29,7 @@ class DarvinRssExtension extends Extension
 
         (new ConfigLoader($container, __DIR__.'/../Resources/config'))->load([
             'configuration',
+            'controller',
             'factory',
             'mapper',
             'streamer',

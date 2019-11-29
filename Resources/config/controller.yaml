@@ -1,0 +1,11 @@
+parameters:
+    darvin_rss.controller.class: Darvin\RssBundle\Controller\RssController
+
+services:
+    darvin_rss.controller:
+        class: '%darvin_rss.controller.class%'
+        arguments:
+            - '@darvin_rss.streamer'
+            - '@=container.getParameter("kernel.debug") ? [] : parameter("darvin_rss.response.headers")'
+        tags:
+            - { name: controller.service_arguments }

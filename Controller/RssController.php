@@ -11,32 +11,39 @@
 namespace Darvin\RssBundle\Controller;
 
 use Darvin\RssBundle\Streamer\RssStreamerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * RSS controller
  */
-class RssController extends AbstractController
+class RssController
 {
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @var \Darvin\RssBundle\Streamer\RssStreamerInterface
      */
-    public function indexAction(): Response
+    private $streamer;
+
+    /**
+     * @var array
+     */
+    private $headers;
+
+    /**
+     * @param \Darvin\RssBundle\Streamer\RssStreamerInterface $streamer RSS streamer
+     * @param array                                           $headers  Response headers
+     */
+    public function __construct(RssStreamerInterface $streamer, array $headers)
     {
-        return new StreamedResponse(
-            [$this->getRssStreamer(), 'streamRss'],
-            200,
-            $this->container->getParameter('kernel.debug') ? [] : $this->container->getParameter('darvin_rss.response.headers')
-        );
+        $this->streamer = $streamer;
+        $this->headers = $headers;
     }
 
     /**
-     * @return \Darvin\RssBundle\Streamer\RssStreamerInterface
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    private function getRssStreamer(): RssStreamerInterface
+    public function __invoke(): Response
     {
-        return $this->get('darvin_rss.streamer');
+        return new StreamedResponse([$this->streamer, 'streamRss'], 200, $this->headers);
     }
 }
