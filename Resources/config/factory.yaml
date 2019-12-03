@@ -12,12 +12,8 @@ parameters:
     darvin_rss.rss_item_factory.class: Darvin\RssBundle\Factory\ItemFactory
 
 services:
-    _defaults:
-        public: true
-
     darvin_rss.content_factory:
         class: '%darvin_rss.content_factory.class%'
-        public: false
         arguments:
             - '@darvin_rss.content_feed_factory'
             - '@darvin_rss.mapper'
@@ -26,7 +22,6 @@ services:
 
     darvin_rss.content_feed_factory:
         class: '%darvin_rss.content_feed_factory.class%'
-        public: false
         arguments:
             - '@doctrine.orm.entity_manager'
             - '@darvin_rss.content_feed_item_factory'
@@ -37,7 +32,6 @@ services:
 
     darvin_rss.content_feed_item_factory:
         class: '%darvin_rss.content_feed_item_factory.class%'
-        public: false
         arguments:
             - '@doctrine.orm.entity_manager'
             - '@darvin_content.router.entity'
@@ -46,11 +40,9 @@ services:
 
     darvin_rss.content_share_factory:
         class: '%darvin_rss.content_share_factory.class%'
-        public: false
 
     darvin_rss.rss_item_factory:
         class: '%darvin_rss.rss_item_factory.class%'
-        public: false
         arguments:
             - '@darvin_rss.content_factory'
             - '@doctrine.orm.entity_manager'
@@ -60,7 +52,6 @@ services:
 
     darvin_rss.rss_factory:
         class: '%darvin_rss.rss_factory.class%'
-        public: false
         arguments:
             - '@request_stack'
             - '%env(resolve:PROJECT_TITLE)%'

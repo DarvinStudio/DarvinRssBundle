@@ -2,11 +2,7 @@ parameters:
     darvin_rss.configuration.class: Darvin\RssBundle\Config\RssConfig
 
 services:
-    _defaults:
-        public: true
-
     darvin_rss.configuration:
         class: '%darvin_rss.configuration.class%'
-        public: false
         arguments:
             - '%darvin_rss.entities%'

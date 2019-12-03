@@ -2,9 +2,6 @@ parameters:
     darvin_rss.streamer.class: Darvin\RssBundle\Streamer\RssStreamer
 
 services:
-    _defaults:
-        public: true
-
     darvin_rss.streamer:
         class: '%darvin_rss.streamer.class%'
         arguments:
