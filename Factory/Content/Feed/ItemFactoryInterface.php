@@ -28,5 +28,5 @@ interface ItemFactoryInterface
      * @return \Darvin\RssBundle\Model\Content\Feed\Item
      * @throws \Darvin\RssBundle\Factory\Content\Feed\Exception\CantCreateItemException
      */
-    public function createItem($entity, FeedConfig $config, array $mapping, Feed $feed): Item;
+    public function createItem(object $entity, FeedConfig $config, array $mapping, Feed $feed): Item;
 }

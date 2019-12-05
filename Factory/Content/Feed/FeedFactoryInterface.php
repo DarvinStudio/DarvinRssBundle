@@ -26,5 +26,5 @@ interface FeedFactoryInterface
      * @return \Darvin\RssBundle\Model\Content\Feed\Feed
      * @throws \RuntimeException
      */
-    public function createFeed($entity, FeedConfig $config, array $mapping): Feed;
+    public function createFeed(object $entity, FeedConfig $config, array $mapping): Feed;
 }

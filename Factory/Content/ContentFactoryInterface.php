@@ -25,5 +25,5 @@ interface ContentFactoryInterface
      *
      * @return \Darvin\RssBundle\Model\Content\Content
      */
-    public function createContent($entity, ContentConfig $config, array $mapping): Content;
+    public function createContent(object $entity, ContentConfig $config, array $mapping): Content;
 }

@@ -26,5 +26,5 @@ interface ItemFactoryInterface
      * @return \Darvin\RssBundle\Model\Item
      * @throws \Darvin\RssBundle\Factory\Exception\CantCreateItemException
      */
-    public function createItem($entity, ContentConfig $config, array $mapping): Item;
+    public function createItem(object $entity, ContentConfig $config, array $mapping): Item;
 }
