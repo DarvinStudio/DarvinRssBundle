@@ -31,7 +31,7 @@ class Mapper implements MapperInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function map($source, $target, array $mapping): void
     {

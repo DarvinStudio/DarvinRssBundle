@@ -79,7 +79,7 @@ class FeedFactory implements FeedFactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function createFeed($entity, FeedConfig $config, array $mapping): Feed
     {

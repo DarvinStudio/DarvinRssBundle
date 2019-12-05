@@ -73,7 +73,7 @@ class ItemFactory implements ItemFactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function createItem($entity, ContentConfig $config, array $mapping): Item
     {

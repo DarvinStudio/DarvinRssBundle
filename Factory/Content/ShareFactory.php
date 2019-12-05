@@ -19,7 +19,7 @@ use Darvin\RssBundle\Model\Content\Share;
 class ShareFactory implements ShareFactoryInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function createShare(ShareConfig $config): Share
     {

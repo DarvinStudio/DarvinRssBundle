@@ -21,7 +21,7 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 class DarvinRssExtension extends Extension
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function load(array $configs, ContainerBuilder $container): void
     {

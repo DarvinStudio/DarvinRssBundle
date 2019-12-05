@@ -65,7 +65,7 @@ class ItemFactory implements ItemFactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function createItem($entity, FeedConfig $config, array $mapping, Feed $feed): Item
     {

@@ -110,7 +110,7 @@ class RssStreamer implements RssStreamerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function streamRss(): void
     {

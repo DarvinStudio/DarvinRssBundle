@@ -61,7 +61,7 @@ class ContentFactory implements ContentFactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function createContent($entity, ContentConfig $config, array $mapping): Content
     {

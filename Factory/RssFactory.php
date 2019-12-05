@@ -40,7 +40,7 @@ class RssFactory implements RssFactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function createRss(): Rss
     {
