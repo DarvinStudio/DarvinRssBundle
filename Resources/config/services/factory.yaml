@@ -54,4 +54,4 @@ services:
         class: '%darvin_rss.rss_factory.class%'
         arguments:
             - '@request_stack'
-            - '%env(resolve:PROJECT_TITLE)%'
+            - '%app_title%'
