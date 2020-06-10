@@ -45,7 +45,7 @@ class FeedFactory implements FeedFactoryInterface
     private $logger;
 
     /**
-     * @var \Symfony\Component\Translation\TranslatorInterface
+     * @var \Symfony\Contracts\Translation\TranslatorInterface
      */
     private $translator;
 
