@@ -201,7 +201,7 @@ class RssStreamer implements RssStreamerInterface
         $content = $this->twig->render($template, $params);
 
         if (!$this->debug) {
-            $content = preg_replace('/\s+/', ' ', $content);
+            $content = preg_replace('/[[:cntrl:]]/', '', preg_replace('/\s+/', ' ', $content));
         }
 
         echo $content;

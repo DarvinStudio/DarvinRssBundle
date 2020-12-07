@@ -3,3 +3,5 @@
 6.0.4: Move service configs to "services" dir.
 
 6.0.5: Use "object" type hint.
+
+6.0.8: Remove unicode control symbols from RSS.
