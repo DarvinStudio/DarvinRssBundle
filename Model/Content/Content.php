@@ -65,7 +65,7 @@ class Content
      *
      * @return Content
      */
-    public function setFeed(Feed $feed = null): Content
+    public function setFeed(?Feed $feed = null): Content
     {
         $this->feed = $feed;
 
@@ -85,7 +85,7 @@ class Content
      *
      * @return Content
      */
-    public function setShare(Share $share = null): Content
+    public function setShare(?Share $share = null): Content
     {
         $this->share = $share;
 
