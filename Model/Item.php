@@ -238,7 +238,7 @@ class Item
      *
      * @return Item
      */
-    public function setPubDate(\DateTime $pubDate = null)
+    public function setPubDate(?\DateTime $pubDate = null)
     {
         $this->pubDate = $pubDate;
 
